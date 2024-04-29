@@ -10,8 +10,6 @@ import Foundation
 //  LBC for leboncoin
 class LBCJSONDecoder: JSONDecoder {
     
-//    let decoder = JSONDecoder()
-    
     var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ'"

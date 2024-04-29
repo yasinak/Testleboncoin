@@ -19,13 +19,10 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
 
     private var cancellables = Set<AnyCancellable>()
     private var tableView = UITableView()
-    var safeArea: UILayoutGuide!
     private lazy var dataSource: UITableViewDiffableDataSource<Int, Home.Ads.ViewModelAd> = {
         UITableViewDiffableDataSource(tableView: tableView) { tableView, indexPath, model in
-            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "adTableview", for: indexPath)
-            cell.textLabel?.text = model.title
-            cell.textLabel?.numberOfLines = 0
-            cell.selectionStyle = .none
+            let cell: AdTableviewCell = tableView.dequeueReusableCell(withIdentifier: AdTableviewCell.identifier, for: indexPath) as! AdTableviewCell
+            cell.ad = model
             return cell
         }
     }()
@@ -61,9 +58,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     private func setupView() {
         self.title = "Home"
         self.view.backgroundColor = .white
-        self.view.backgroundColor = .white
-        safeArea = view.layoutMarginsGuide
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "adTableview")
+        tableView.register(AdTableviewCell.self, forCellReuseIdentifier: AdTableviewCell.identifier)
         tableView.dataSource = dataSource
     }
 
