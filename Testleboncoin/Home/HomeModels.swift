@@ -11,15 +11,43 @@ import UIKit
 enum Home
 {
     // MARK: Use cases
-
-    enum Something {
+    
+    enum Ads {
         struct Request {
         }
-
-        struct Response {
+        
+        struct ResponseAd {
+            let id: Int?
+            let categoryId: Int?
+            let title: String?
+            let price: Int?
+            let imagesUrlSmall: URL?
+            let imagesUrlThumb: URL?
+            let creationDate: Date?
+            let isUrgent: Bool?
         }
-
-        struct ViewModel {
+        
+        struct ResponseCategory {
+            let id: Int?
+            let name: String?
+        }
+        
+        struct ViewModelAd: Hashable {
+            let id: Int?
+            let categoryName: String?
+            let title: String?
+            let price: String?
+            let imagesUrlSmall: URL?
+            let imagesUrlThumb: URL?
+            let creationDate: Date?
+            let isUrgent: Bool?
+        }
+        
+        
+        struct ViewModelCategory {
+            let id: Int?
+            let name: String?
         }
     }
+    
 }

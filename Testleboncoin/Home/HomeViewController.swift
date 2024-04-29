@@ -7,15 +7,28 @@
 //
 
 import UIKit
+import Combine
 
 protocol HomeDisplayLogic: class {
-    func displaySomething(viewModel: Home.Something.ViewModel)
+    func displayAds(viewModelAds: [Home.Ads.ViewModelAd], viewModelCategories: [Home.Ads.ViewModelCategory])
 }
 
 class HomeViewController: UIViewController, HomeDisplayLogic {
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
 
+    private var cancellables = Set<AnyCancellable>()
+    private var tableView = UITableView()
+    var safeArea: UILayoutGuide!
+    private lazy var dataSource: UITableViewDiffableDataSource<Int, Home.Ads.ViewModelAd> = {
+        UITableViewDiffableDataSource(tableView: tableView) { tableView, indexPath, model in
+            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "adTableview", for: indexPath)
+            cell.textLabel?.text = model.title
+            cell.textLabel?.numberOfLines = 0
+            cell.selectionStyle = .none
+            return cell
+        }
+    }()
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -44,6 +57,15 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         router.viewController = viewController
         router.dataStore = interactor
     }
+    
+    private func setupView() {
+        self.title = "Home"
+        self.view.backgroundColor = .white
+        self.view.backgroundColor = .white
+        safeArea = view.layoutMarginsGuide
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "adTableview")
+        tableView.dataSource = dataSource
+    }
 
     // MARK: Routing
 
@@ -60,21 +82,36 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
-        title = "Home"
-        self.view.backgroundColor = .white
-
+        setupView()
+        setupTableView()
+        fetchAdsAndCategories()
     }
 
     // MARK: Do something
 
-
-    func doSomething() {
-        let request = Home.Something.Request()
-        interactor?.doSomething(request: request)
+    func fetchAdsAndCategories() {
+        interactor?.fetchAdsAndCategories()
     }
 
-    func displaySomething(viewModel: Home.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+    func displayAds(viewModelAds: [Home.Ads.ViewModelAd], viewModelCategories: [Home.Ads.ViewModelCategory]) {
+        print(viewModelAds)
+        print(viewModelCategories)
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Home.Ads.ViewModelAd>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(viewModelAds,
+                             toSection: 0)
+        dataSource.apply(snapshot)
+    }
+}
+
+extension HomeViewController {
+    
+    func setupTableView() {
+      view.addSubview(tableView)
+      tableView.translatesAutoresizingMaskIntoConstraints = false
+      tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+      tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+      tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
 }

@@ -7,26 +7,57 @@
 //
 
 import UIKit
+import Combine
 
 protocol HomeBusinessLogic {
-    func doSomething(request: Home.Something.Request)
+    func fetchAdsAndCategories()
 }
 
 protocol HomeDataStore {
-    //var name: String { get set }
+    
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?
-    //var name: String = ""
-
+    
+    private var cancellables = Set<AnyCancellable>()
+    
     // MARK: Do something
-
-    func doSomething(request: Home.Something.Request) {
-        worker?.doSomeWork()
-
-        let response = Home.Something.Response()
-        presenter?.presentSomething(response: response)
+    
+    func fetchAdsAndCategories() {
+        worker?.fetchAdsAndCategories()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Error:", error)
+                }
+            }, receiveValue: { [weak self] responseAd, responseCategory in
+                print("Response 1:", responseAd)
+                print("Response 2:", responseCategory)
+                
+                let ads = responseAd.compactMap { ad in
+                    Home.Ads.ResponseAd(id: ad.id,
+                                       categoryId: ad.category_id,
+                                       title: ad.title,
+                                       price: ad.price,
+                                       imagesUrlSmall: ad.images_url?.small,
+                                       imagesUrlThumb: ad.images_url?.thumb,
+                                       creationDate: ad.creation_date,
+                                       isUrgent: ad.is_urgent)
+                }
+                
+                let categories = responseCategory.compactMap { category in
+                    Home.Ads.ResponseCategory(id: category.id,
+                                             name: category.name)
+                }
+                self?.presenter?.presentAds(responseAds: ads,
+                                      responseCategories: categories)
+                
+            })
+            .store(in: &cancellables)
     }
 }
