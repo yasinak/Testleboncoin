@@ -24,7 +24,6 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     // MARK: Do something
 
     func doSomething(request: Home.Something.Request) {
-        worker = HomeWorker()
         worker?.doSomeWork()
 
         let response = Home.Something.Response()

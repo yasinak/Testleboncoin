@@ -35,9 +35,11 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         let interactor = HomeInteractor()
         let presenter = HomePresenter()
         let router = HomeRouter()
+        let worker = HomeWorker()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
+        interactor.worker = worker
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
