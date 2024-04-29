@@ -11,4 +11,3 @@ struct Category: Decodable {
     let id: Int?
     let name: String?
 }
-

@@ -59,11 +59,13 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         doSomething()
+        title = "Home"
+        self.view.backgroundColor = .white
+
     }
 
     // MARK: Do something
 
-    //@IBOutlet weak var nameTextField: UITextField!
 
     func doSomething() {
         let request = Home.Something.Request()
