@@ -1,8 +1,5 @@
 # Testleboncoin
 
-
-# AdsAppTest
-
 This project has the ambition create a mini application that fetches the list of Ads display them in a list, in the assessment context ask by leboncoin company.
 
 
