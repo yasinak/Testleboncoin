@@ -22,13 +22,19 @@ class TestleboncoinUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func testHome() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        //  Tap on a cell to go to the details screen
+        let myTable = app.tables.matching(identifier: "homeTableViewIdentifier")
+        let cell = myTable.cells.element(matching: .cell, identifier: "adTableViewCell_0")
+        cell.tap()
+        
+        //  Tap on the back button of the navigaion bar
+        app.navigationBars.buttons.element(boundBy: 0).tap()
     }
 
     func testLaunchPerformance() throws {

@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         UITableViewDiffableDataSource(tableView: tableView) { tableView, indexPath, model in
             let cell: AdTableviewCell = tableView.dequeueReusableCell(withIdentifier: AdTableviewCell.identifier, for: indexPath) as! AdTableviewCell
             cell.ad = model
+            cell.accessibilityIdentifier = "adTableViewCell_\(indexPath.row)"
             return cell
         }
     }()
@@ -65,6 +66,8 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filtre", style: .plain, target: self, action: #selector(displayActionSheet))
         tableView.register(AdTableviewCell.self, forCellReuseIdentifier: AdTableviewCell.identifier)
         tableView.dataSource = dataSource
+        tableView.delegate = self
+        tableView.accessibilityIdentifier = "homeTableViewIdentifier"
     }
     
     // MARK: Routing
@@ -128,6 +131,16 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         }
     }
     
+}
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Récupérez l'élément sélectionné
+        guard let selectedItem = dataSource.itemIdentifier(for: indexPath) else { return }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension HomeViewController {
