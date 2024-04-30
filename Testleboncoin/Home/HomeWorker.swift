@@ -11,14 +11,13 @@ import Combine
 
 class HomeWorker {
     
-    
-    func fetchAdsAndCategories() -> AnyPublisher<([Ad],[Category]),Error> {
+    func fetchAdsAndCategories() -> AnyPublisher<([Ad],[AdCategory]),Error> {
         // Création des URL pour les deux requêtes
         guard let url1 = URL(string: URLs.adsListUrl()) else {
-            return Fail<([Ad],[Category]), Error>(error: LBCError.incorrectUrl).eraseToAnyPublisher()
+            return Fail<([Ad],[AdCategory]), Error>(error: LBCError.incorrectUrl).eraseToAnyPublisher()
         }
         guard let url2 = URL(string: URLs.categoriesListUrl()) else {
-            return Fail<([Ad],[Category]), Error>(error: LBCError.incorrectUrl).eraseToAnyPublisher()
+            return Fail<([Ad],[AdCategory]), Error>(error: LBCError.incorrectUrl).eraseToAnyPublisher()
         }
         
         // Création des éditeurs (publishers) pour les deux requêtes
@@ -29,7 +28,7 @@ class HomeWorker {
         
         let publisher2 = URLSession.shared.dataTaskPublisher(for: url2)
             .map { $0.data }
-            .decode(type: [Category].self, decoder: LBCJSONDecoder())
+            .decode(type: [AdCategory].self, decoder: LBCJSONDecoder())
             .mapError { $0 as Error }
         
         // Utilisation de l'opérateur zip pour effectuer les deux requêtes en parallèle

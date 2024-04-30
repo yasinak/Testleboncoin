@@ -1,5 +1,5 @@
 //
-//  Category.swift
+//  AdCategory.swift
 //  Testleboncoin
 //
 //  Created by Yasin Akinci on 29/04/2024.
