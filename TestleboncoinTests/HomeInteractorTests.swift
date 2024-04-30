@@ -54,7 +54,6 @@ class HomeInteractorTests: XCTestCase {
             
             return publisher
         }
-        
     }
     
     func testSuccessFetchAdsAndCategories() {
@@ -71,9 +70,6 @@ class HomeInteractorTests: XCTestCase {
         XCTAssertTrue(worker.presentAdsCalled, "testFetchAdsAndCategories() worker should be called")
         XCTAssertTrue(presenter.presentAdsCalled, "testFetchAdsAndCategories() should ask the presenter to format the result")
     }
-
-    
-    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

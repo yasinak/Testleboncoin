@@ -14,6 +14,9 @@
 		5073CF112BE036CF00A37F4B /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CF102BE036CF00A37F4B /* CachedImageView.swift */; };
 		5073CF342BE0E9C000A37F4B /* HomeInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CF332BE0E9C000A37F4B /* HomeInteractorTests.swift */; };
 		5073CF452BE10A4D00A37F4B /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CF442BE10A4D00A37F4B /* UIViewController.swift */; };
+		5073CF4A2BE10DDD00A37F4B /* HomePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CF492BE10DDD00A37F4B /* HomePresenterTests.swift */; };
+		5073CF522BE10F7000A37F4B /* HomeWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CF512BE10F7000A37F4B /* HomeWorkerTests.swift */; };
+		5073CF5A2BE110B600A37F4B /* listing.json in Resources */ = {isa = PBXBuildFile; fileRef = 5073CF592BE110B600A37F4B /* listing.json */; };
 		50EDB6032BDF93940071EBF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EDB6022BDF93940071EBF9 /* AppDelegate.swift */; };
 		50EDB6052BDF93940071EBF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EDB6042BDF93940071EBF9 /* SceneDelegate.swift */; };
 		50EDB60C2BDF939F0071EBF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50EDB60B2BDF939F0071EBF9 /* Assets.xcassets */; };
@@ -56,6 +59,9 @@
 		5073CF102BE036CF00A37F4B /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		5073CF332BE0E9C000A37F4B /* HomeInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractorTests.swift; sourceTree = "<group>"; };
 		5073CF442BE10A4D00A37F4B /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		5073CF492BE10DDD00A37F4B /* HomePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterTests.swift; sourceTree = "<group>"; };
+		5073CF512BE10F7000A37F4B /* HomeWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkerTests.swift; sourceTree = "<group>"; };
+		5073CF592BE110B600A37F4B /* listing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = listing.json; sourceTree = "<group>"; };
 		50EDB5FF2BDF93940071EBF9 /* Testleboncoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Testleboncoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50EDB6022BDF93940071EBF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50EDB6042BDF93940071EBF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +174,9 @@
 		50EDB6182BDF93A00071EBF9 /* TestleboncoinTests */ = {
 			isa = PBXGroup;
 			children = (
+				5073CF592BE110B600A37F4B /* listing.json */,
+				5073CF512BE10F7000A37F4B /* HomeWorkerTests.swift */,
+				5073CF492BE10DDD00A37F4B /* HomePresenterTests.swift */,
 				5073CF332BE0E9C000A37F4B /* HomeInteractorTests.swift */,
 				50EDB61B2BDF93A00071EBF9 /* Info.plist */,
 			);
@@ -338,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5073CF5A2BE110B600A37F4B /* listing.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +390,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5073CF522BE10F7000A37F4B /* HomeWorkerTests.swift in Sources */,
 				5073CF342BE0E9C000A37F4B /* HomeInteractorTests.swift in Sources */,
+				5073CF4A2BE10DDD00A37F4B /* HomePresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
