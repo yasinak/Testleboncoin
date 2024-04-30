@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomePresentationLogic {
     func presentAds(responseAds: [Home.Ads.ResponseAd], responseCategories: [Home.Ads.ResponseCategory])
+    func presentError()
 }
 
 class HomePresenter: HomePresentationLogic {
@@ -40,6 +41,10 @@ class HomePresenter: HomePresentationLogic {
         
         viewController?.displayAds(viewModelAds: viewModelAds,
                                    viewModelCategories: [])
+    }
+    
+    func presentError() {
+        viewController?.displayError()
     }
     
     private func getCategoryName(responseAd: Home.Ads.ResponseAd, responseCategories: [Home.Ads.ResponseCategory]) -> String {

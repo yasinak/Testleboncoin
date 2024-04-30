@@ -32,8 +32,8 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
                 switch completion {
                 case .finished:
                     break
-                case .failure(let error):
-                    print("Error:", error)
+                case .failure:
+                    self.presenter?.presentError()
                 }
             }, receiveValue: { [weak self] responseAd, responseCategory in
                 let ads = responseAd.compactMap { ad in

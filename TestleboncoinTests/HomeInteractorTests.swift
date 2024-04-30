@@ -71,11 +71,9 @@ class HomeInteractorTests: XCTestCase {
         XCTAssertTrue(worker.presentAdsCalled, "testFetchAdsAndCategories() worker should be called")
         XCTAssertTrue(presenter.presentAdsCalled, "testFetchAdsAndCategories() should ask the presenter to format the result")
     }
+
     
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

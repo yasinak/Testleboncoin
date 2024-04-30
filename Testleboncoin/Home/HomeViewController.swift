@@ -11,6 +11,7 @@ import Combine
 
 protocol HomeDisplayLogic: class {
     func displayAds(viewModelAds: [Home.Ads.ViewModelAd], viewModelCategories: [Home.Ads.ViewModelCategory])
+    func displayError()
 }
 
 class HomeViewController: UIViewController, HomeDisplayLogic {
@@ -94,6 +95,10 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         snapshot.appendItems(viewModelAds,
                              toSection: 0)
         dataSource.apply(snapshot)
+    }
+    
+    func displayError() {
+        self.displayError()
     }
 }
 
