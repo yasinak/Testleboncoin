@@ -118,6 +118,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		5073CF1B2BE05CD200A37F4B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		50EDB5F62BDF93930071EBF9 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +148,7 @@
 		50EDB6012BDF93940071EBF9 /* Testleboncoin */ = {
 			isa = PBXGroup;
 			children = (
+				5073CF1B2BE05CD200A37F4B /* Extensions */,
 				5073CE912BDFB3EE00A37F4B /* Coordinators */,
 				50EDB6692BDF9CDD0071EBF9 /* Models */,
 				50EDB6502BDF97FA0071EBF9 /* Common */,

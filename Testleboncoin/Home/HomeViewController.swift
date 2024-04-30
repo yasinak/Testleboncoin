@@ -89,8 +89,6 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }
 
     func displayAds(viewModelAds: [Home.Ads.ViewModelAd], viewModelCategories: [Home.Ads.ViewModelCategory]) {
-        print(viewModelAds)
-        print(viewModelCategories)
         var snapshot = NSDiffableDataSourceSnapshot<Int, Home.Ads.ViewModelAd>()
         snapshot.appendSections([0])
         snapshot.appendItems(viewModelAds,

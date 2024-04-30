@@ -36,9 +36,6 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
                     print("Error:", error)
                 }
             }, receiveValue: { [weak self] responseAd, responseCategory in
-                print("Response 1:", responseAd)
-                print("Response 2:", responseCategory)
-                
                 let ads = responseAd.compactMap { ad in
                     Home.Ads.ResponseAd(id: ad.id,
                                        categoryId: ad.category_id,

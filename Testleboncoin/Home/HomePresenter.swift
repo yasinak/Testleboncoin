@@ -19,8 +19,15 @@ class HomePresenter: HomePresentationLogic {
 
     func presentAds(responseAds: [Home.Ads.ResponseAd], responseCategories: [Home.Ads.ResponseCategory]) {
         
+        let sortedByDateResponseAds = responseAds.sorted { responseAd1, responseAd2 in
+            (responseAd1.creationDate ?? Date()) > (responseAd2.creationDate ?? Date())
+        }
+
+        let sortedByDateAndUrgentPropertyResponseAds = sortedByDateResponseAds.sorted { responseAd1, responseAd2 in
+            (responseAd1.isUrgent ?? false) && !(responseAd2.isUrgent ?? false)
+        }
         
-        let viewModelAds = responseAds.compactMap { responseAd in
+        let viewModelAds = sortedByDateAndUrgentPropertyResponseAds.compactMap { responseAd in
             return Home.Ads.ViewModelAd(id: responseAd.id,
                                  categoryName: getCategoryName(responseAd: responseAd, responseCategories: responseCategories),
                                  title: responseAd.title,
