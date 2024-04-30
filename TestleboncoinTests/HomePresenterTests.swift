@@ -31,8 +31,13 @@ class HomePresenterTests: XCTestCase {
     class HomeDisplayLogicSpy: HomeDisplayLogic {
         
         var displayAdsCalled = false
-        func displayAds(viewModelAds: [Home.Ads.ViewModelAd], viewModelCategories: [Home.Ads.ViewModelCategory]) {
+        func displayAds(viewModelAds: [Home.Ads.ViewModelAd]) {
             displayAdsCalled = true
+        }
+        
+        var displayCategoriesCalled = false
+        func getCategories(viewModelCategories: [Home.Ads.ViewModelCategory]) {
+            displayCategoriesCalled = true
         }
         
         var displayErrorCalled = false
@@ -44,7 +49,7 @@ class HomePresenterTests: XCTestCase {
     func testPresentAds() {
         let viewController = HomeDisplayLogicSpy()
         presenter.viewController = viewController
-        presenter.presentAds(responseAds: [], responseCategories: [])
+        presenter.presentAds(responseAds: [], responseCategory: Home.Ads.ResponseCategory(id: 1, name: "Véhicule"))
         XCTAssertTrue(viewController.displayAdsCalled, "presentAds(:) should ask the view controller to display the result")
         
         presenter.presentError()

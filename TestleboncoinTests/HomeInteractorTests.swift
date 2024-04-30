@@ -28,12 +28,18 @@ class HomeInteractorTests: XCTestCase {
     }
     
     class HomePresentationLogicSpy: HomePresentationLogic {
-        var presentAdsCalled = false
-        var expectPresentAds: XCTestExpectation?
-        func presentAds(responseAds: [Home.Ads.ResponseAd], responseCategories: [Home.Ads.ResponseCategory]) {
-            presentAdsCalled = true
+        
+        var presentAdsAndCategoriesCalled = false
+        var expectPresentAdsAndCategoriesCalled: XCTestExpectation?
+        func presentAdsAndCategories(responseAds: [Home.Ads.ResponseAd], responseCategories: [Home.Ads.ResponseCategory]) {
+            presentAdsAndCategoriesCalled = true
         }
         
+        var presentAdsCalled = false
+        func presentAds(responseAds: [Home.Ads.ResponseAd], responseCategory: Home.Ads.ResponseCategory?) {
+            presentAdsCalled = true
+        }
+
         var presentErrorCalled = false
         func presentError() {
             presentErrorCalled = true
@@ -58,7 +64,7 @@ class HomeInteractorTests: XCTestCase {
     
     func testSuccessFetchAdsAndCategories() {
         let presenter = HomePresentationLogicSpy()
-        presenter.expectPresentAds = XCTestExpectation(description: "expect present Ads")
+        presenter.expectPresentAdsAndCategoriesCalled = XCTestExpectation(description: "expect present Ads")
         
         let worker = HomeWorkerSpy()
         interactor.presenter = presenter
@@ -66,9 +72,9 @@ class HomeInteractorTests: XCTestCase {
         
         interactor.fetchAdsAndCategories()
         
-        XCTWaiter(delegate: nil).wait(for: [presenter.expectPresentAds!], timeout: 1)
+        XCTWaiter(delegate: nil).wait(for: [presenter.expectPresentAdsAndCategoriesCalled!], timeout: 1)
         XCTAssertTrue(worker.presentAdsCalled, "testFetchAdsAndCategories() worker should be called")
-        XCTAssertTrue(presenter.presentAdsCalled, "testFetchAdsAndCategories() should ask the presenter to format the result")
+        XCTAssertTrue(presenter.presentAdsAndCategoriesCalled, "testFetchAdsAndCategories() should ask the presenter to format the result")
     }
 
     func testPerformanceExample() throws {
